@@ -1,14 +1,16 @@
 public class Livro {
-    private String titulo;
-    private String autor;
-    private String isbn;
-    private boolean disponivel; // Atributo privado protegendo o estado
+    private final String titulo;
+    private final String autor;
+    private final String isbn;
+    private boolean disponivel;
+    private Usuario usuarioEmprestimo;
 
     public Livro(String titulo, String autor, String isbn) {
         this.titulo = titulo;
         this.autor = autor;
         this.isbn = isbn;
         this.disponivel = true;
+        this.usuarioEmprestimo = null;
     }
 
     public String getTitulo() {
@@ -27,9 +29,14 @@ public class Livro {
         return disponivel;
     }
 
-    public boolean emprestar() {
-        if (this.disponivel) {
+    public Usuario getUsuarioEmprestimo() {
+        return usuarioEmprestimo;
+    }
+
+    public boolean emprestar(Usuario usuario) {
+        if (this.disponivel && usuario != null) {
             this.disponivel = false;
+            this.usuarioEmprestimo = usuario;
             return true;
         }
         return false;
@@ -37,11 +44,13 @@ public class Livro {
 
     public void devolver() {
         this.disponivel = true;
+        this.usuarioEmprestimo = null;
     }
 
     @Override
     public String toString() {
         String status = disponivel ? "Disponível" : "Emprestado";
-        return String.format("'%s' - %s (ISBN: %s) [%s]", titulo, autor, isbn, status);
+        String comUsuario = usuarioEmprestimo != null ? " | Emprestado para: " + usuarioEmprestimo.getNome() : "";
+        return String.format("'%s' - %s (ISBN: %s) [%s]%s", titulo, autor, isbn, status, comUsuario);
     }
 }
