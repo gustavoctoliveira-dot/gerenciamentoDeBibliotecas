@@ -1,32 +1,71 @@
 # 📚 Sistema de Gerenciamento de Bibliotecas
 
-Projeto desenvolvido em **Java** para exercitar e demonstrar os pilares fundamentais da **Programação Orientada a Objetos (POO)**.
+Projeto em Java para controlar usuários, livros, empréstimos e devoluções de uma biblioteca. O sistema foi desenvolvido com foco em POO, encapsulamento, herança e polimorfismo.
 
-## 🛠️ Conceitos de POO Aplicados
+## ✅ Funcionalidades implementadas
 
-* **Encapsulamento:** Proteção do estado interno dos objetos (ex: disponibilidade dos livros e atributos privados) através de métodos de acesso e modificação.
-* **Abstração:** Isolamento da complexidade de operações como empréstimo e devolução.
-* **Herança:** Criação da classe base `Usuario` estendida pelas subclasses `UsuarioComum`, `UsuarioVIP` e `Bibliotecario`.
-* **Polimorfismo:** Diferentes regras de prazo de devolução e permissões aplicadas dinamicamente para cada tipo de utilizador.
+- Cadastro de usuários comuns e VIP
+- Cadastro de bibliotecário
+- Cadastro de livros no acervo
+- Listagem do acervo
+- Listagem de usuários cadastrados
+- Empréstimo de livros
+- Devolução de livros
+- Validação básica de duplicidade e regras de negócio
+- Menu interativo no terminal
 
-## 📁 Estrutura do Projeto
+## 🧱 Conceitos de POO aplicados
 
-* `Livro.java` - Representa os livros do acervo.
-* `Usuario.java` - Classe abstrata base para os utilizadores.
-* `UsuarioComum.java` - Subclasse com prazo padrão de empréstimo (7 dias).
-* `UsuarioVip.java` - Subclasse com prazo alargado de empréstimo (14 dias).
-* `Bibliotecario.java` - Subclasse com permissões de gestão do acervo (30 dias).
-* `Biblioteca.java` - Gestora do acervo de livros e utilizadores registados.
-* `Main.java` - Classe principal para simulação e teste do sistema.
+- Encapsulamento: estados protegidos por métodos e controle de acesso
+- Herança: `Usuario` é a classe base e `UsuarioComum`, `UsuarioVIP` e `Bibliotecario` herdam dela
+- Polimorfismo: cada tipo de usuário possui regra específica de prazo de devolução
+- Abstração: operações como empréstimo e devolução ficam encapsuladas nas classes corretas
 
-## 🚀 Como Executar o Projeto
+## 📁 Estrutura do projeto
+
+- `Main.java` – menu principal e fluxo interativo
+- `Biblioteca.java` – gestão do acervo e usuários
+- `Livro.java` – representação dos livros
+- `Usuario.java` – classe abstrata base dos usuários
+- `UsuarioComum.java` – usuário comum, prazo de 7 dias
+- `UsuarioVIP.java` – usuário VIP, prazo de 14 dias
+- `Bibliotecario.java` – gestão do acervo e permissões de bibliotecário
+
+## 🚀 Como executar
 
 ### Pré-requisitos
-* Java JDK 8 ou superior instalado no computador.
 
-### Passo a passo no Terminal / Prompt de Comando
+- Java JDK instalado
+- Terminal ou PowerShell
 
-1. Clone este repositório (ou transfira os ficheiros para uma pasta):
-   ```bash
-   git clone [https://github.com/gustavoctoliveira-dot/gerenciamentoDeBibliotecas.git](https://github.com/gustavoctoliveira-dot/gerenciamentoDeBibliotecas.git)
-   cd gerenciamentoDeBibliotecas
+### Comandos no terminal
+
+No PowerShell do Windows:
+
+```powershell
+cd "c:\Users\Pichau\Desktop\gerenciamentoDeBibliotecas-main\gerenciamentoDeBibliotecas-main"
+javac *.java
+java Main
+```
+
+Ou em uma linha:
+
+```powershell
+cd "c:\Users\Pichau\Desktop\gerenciamentoDeBibliotecas-main\gerenciamentoDeBibliotecas-main"; javac *.java; java Main
+```
+
+## 🧪 Exemplo de uso
+
+1. Escolha a opção 1 para cadastrar um usuário
+2. Escolha a opção 2 para cadastrar um livro
+3. Escolha a opção 5 para emprestar um livro
+4. Escolha a opção 6 para devolver um livro
+5. Escolha a opção 7 para sair
+
+## 🔎 Observação
+
+O programa foi validado com execução em terminal, incluindo cadastro, listagem e processo de empréstimo. O sistema está funcionando corretamente no ambiente atual.
+
+## 📌 Status
+
+Projeto em estado funcional e pronto para uso básico.
