@@ -11,6 +11,8 @@ Projeto em Java para controlar usuários, livros, empréstimos e devoluções de
 - Listagem de usuários cadastrados
 - Empréstimo de livros
 - Devolução de livros
+- Exceção personalizada `LivroIndisponivelException` ao tentar emprestar um livro já emprestado
+- API REST HTTP com respostas JSON
 - Validação básica de duplicidade e regras de negócio
 - Menu interativo no terminal
 
@@ -25,6 +27,9 @@ Projeto em Java para controlar usuários, livros, empréstimos e devoluções de
 
 - `Main.java` – menu principal e fluxo interativo
 - `Biblioteca.java` – gestão do acervo e usuários
+- `BibliotecaApi.java` – API REST para administrar livros, usuários, empréstimos e devoluções
+- `index.html` – interface web responsiva para gerenciar o acervo no navegador
+- `LivroIndisponivelException.java` – exceção lançada quando um livro não está disponível
 - `Livro.java` – representação dos livros
 - `Usuario.java` – classe abstrata base dos usuários
 - `UsuarioComum.java` – usuário comum, prazo de 7 dias
@@ -53,6 +58,34 @@ Ou em uma linha:
 ```powershell
 cd "c:\Users\Pichau\Desktop\gerenciamentoDeBibliotecas-main\gerenciamentoDeBibliotecas-main"; javac *.java; java Main
 ```
+
+### Executar a API REST
+
+Compile os arquivos e inicie o servidor na porta padrão 8080:
+
+```powershell
+javac *.java
+java BibliotecaApi
+```
+
+Uma porta alternativa pode ser informada como argumento: `java BibliotecaApi 8081`.
+
+Abra `http://localhost:8080` no navegador para usar a interface gráfica. A página e a API são servidas pelo mesmo programa.
+
+Endpoints disponíveis:
+
+| Método | Caminho | Campos do formulário |
+| --- | --- | --- |
+| GET | `/api` | — |
+| GET | `/livros` | — |
+| GET | `/usuarios` | — |
+| GET | `/emprestimos` | — |
+| POST | `/livros` | `titulo`, `autor`, `isbn` |
+| POST | `/usuarios` | `nome`, `id`, `tipo` (`COMUM` ou `VIP`) |
+| POST | `/emprestimos` | `idUsuario`, `isbn` |
+| POST | `/devolucoes` | `idUsuario`, `isbn` |
+
+Requisições POST usam `Content-Type: application/x-www-form-urlencoded`; os endpoints da API respondem em JSON. A rota `/` serve a interface HTML. Empréstimos de livros indisponíveis retornam HTTP 409 com a mensagem da `LivroIndisponivelException`.
 
 ## 🧪 Exemplo de uso
 

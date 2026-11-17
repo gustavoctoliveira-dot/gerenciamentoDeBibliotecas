@@ -140,7 +140,11 @@ public class Main {
             return;
         }
 
-        usuario.pegarEmprestado(livro);
+        try {
+            usuario.pegarEmprestado(livro);
+        } catch (LivroIndisponivelException e) {
+            System.out.println("❌ " + e.getMessage());
+        }
     }
 
     private static void realizarDevolucao(Biblioteca biblioteca, Scanner scanner) {

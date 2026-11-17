@@ -33,13 +33,18 @@ public class Livro {
         return usuarioEmprestimo;
     }
 
-    public boolean emprestar(Usuario usuario) {
-        if (this.disponivel && usuario != null) {
-            this.disponivel = false;
-            this.usuarioEmprestimo = usuario;
-            return true;
+    public boolean emprestar(Usuario usuario) throws LivroIndisponivelException {
+        if (usuario == null) {
+            return false;
         }
-        return false;
+
+        if (!disponivel) {
+            throw new LivroIndisponivelException("O livro '" + titulo + "' não está disponível.");
+        }
+
+        disponivel = false;
+        usuarioEmprestimo = usuario;
+        return true;
     }
 
     public void devolver() {

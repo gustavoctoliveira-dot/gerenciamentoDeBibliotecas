@@ -26,15 +26,14 @@ public abstract class Usuario {
 
     public abstract int calcularPrazoDevolucao();
 
-    public boolean pegarEmprestado(Livro livro) {
+    public boolean pegarEmprestado(Livro livro) throws LivroIndisponivelException {
         if (livro == null) {
             System.out.println("⚠️ Livro inválido.");
             return false;
         }
 
         if (!livro.isDisponivel()) {
-            System.out.println("❌ O livro '" + livro.getTitulo() + "' já está emprestado.");
-            return false;
+            throw new LivroIndisponivelException("O livro '" + livro.getTitulo() + "' não está disponível.");
         }
 
         if (livrosEmprestados.contains(livro)) {
